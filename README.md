@@ -10,7 +10,7 @@ keyhero.com relies on user-submitted quotes and allows users to edit quotes. Thi
 
 typeracer.com is awesome in terms of quote quality, it just bothers me that in order to get from one quote to the next, you have to click the next button with your mouse (instead of the enter key). I don't like their UI, and the fact that you have to wait for a countdown before you can start typing.
 
-nitrotype.com is... just bad. Games take way too long to load, sometimes it even gets stuck on a loading screen, they keep prompting users to log in, and because it doesn't let users type a letter they're not supposed to type or fix mistakes, it doens't improve real typing speed, just speed on that particular site.
+nitrotype.com is... just bad. Games take way too long to load, sometimes it even gets stuck on a loading screen, they keep prompting users to log in, and because it doesn't let users type a letter they're not supposed to type or fix mistakes, it doesn't improve real typing speed, just speed on that particular site.
 
 monkeytype.com: Good overall, but it only lets users type lists of words from the dictionary, not real sentences with punctuation. I also dislike that the entire rest of the text in the typing window moves when the user makes a mistake.
 
