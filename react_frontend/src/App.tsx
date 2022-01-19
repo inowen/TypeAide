@@ -1,26 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
+import 'reactstrap';
+import { Button, Container, Nav, Navbar, NavbarBrand, NavbarText, NavLink } from 'reactstrap';
 import './App.css';
 
 
-class App extends React.Component {
-
-  constructor(props: any) {
-    super(props);
-  }
-
-  render() {
-    return <div className="alert alert-success">
-        This is some text.
-        <div className="alert alert-warning">This is a subdiv with a warning</div>
-        <div className="container-fluid">
-          <div className="strong">This is strong text</div>
-          <div className="lead">This is lead text</div>
-          <button className="btn large btn-primary">Primary button</button>
-          <button className="btn-default">Secondary small button</button>
-        </div>
-      </div>
-  }
-
+function App() {
+  let type: string, setType: any;
+  [type, setType] = useState("btn-success");
+  return <div className="App">
+    <Container>
+      <button className={type} onClick={() => setType((prev:string) => {return prev=="btn-success" ? "btn-primary" : "btn-success"})}>{type} button!</button>
+    </Container>
+  </div>;
 }
 
 export default App;
