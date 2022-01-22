@@ -1,15 +1,17 @@
-import { Nav, Navbar, NavbarBrand, NavLink } from "reactstrap";
-
+import './navbar.css'
 
 function NavigationBar() {
-  return <Navbar className="bg-dark">
-    <NavbarBrand href="/">
-        TLite
-    </NavbarBrand>
-    <Nav>
-      <NavLink href="/">Test</NavLink>
-    </Nav>
-  </Navbar>
+  return <div className="nav nav-bar navigationbar">
+      <div className="navbar-container">
+        <div className="navbar-left">
+          <button className="btn logo-btn with-margin">Logo</button>
+          <button className="btn with-margin">Other</button>
+        </div>
+        <div className="navbar-right">
+          <button className="btn login-btn with-margin">Logo</button>
+        </div>
+      </div>
+  </div>
 }
 
 
