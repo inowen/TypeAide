@@ -1,8 +1,20 @@
-import './navbar.css';
-
+import  { Button, Nav, Navbar, NavbarBrand, NavLink } from 'react-bootstrap';
 
 function NavigationBar() {
-  return <div></div>
+  return <Navbar variant="dark" bg="dark">
+    <NavbarBrand style={{marginLeft:"1%"}}>
+      Brand
+    </NavbarBrand>
+    <Nav>
+      <NavLink href="#">Typing </NavLink>
+      <NavLink href="#">About</NavLink>
+    </Nav>
+    <div style={{position:"absolute", right:"1%"}}>
+    <Nav>
+      <NavLink href="#">Login</NavLink>
+    </Nav>
+    </div>
+  </Navbar>
 }
 
 
