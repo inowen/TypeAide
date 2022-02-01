@@ -1,4 +1,4 @@
 FROM mongo
-COPY .:/app
+COPY . /app
 EXPOSE 27107
-RUN init_script.sh
+RUN /app/init_script.sh
