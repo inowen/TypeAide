@@ -1,6 +1,7 @@
 version: "3.7"
 
 services:
+  # The actual database
   mongodb:
     build: ./mongodb
     ports:
@@ -8,3 +9,11 @@ services:
     volumes:
       - "./mongodb/db-data:/data/db"
       - "./mongodb/backups:/backups"
+
+  # Auxiliary container to connect to db and initialize data
+  initdb:
+    build: ./mongodb
+    links:
+      - mongodb
+    command:
+      - /app/scripts/init_db.sh
