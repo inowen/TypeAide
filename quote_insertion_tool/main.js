@@ -1,5 +1,6 @@
-var fs = require('fs');
-const { exit } = require('process');
+import fs from 'fs';
+import exit from 'process';
+import Tester from './tester.js';
 
 function process_file(filename) {
     // Read file and parse to json array
@@ -8,15 +9,23 @@ function process_file(filename) {
 
     // Process each quote in the file individually
     json_array.forEach((quote) => {
-        // Run tests
-        // .... (call previously defined function here)
+        console.log("\tChecking quote: " + quote); 
 
+        // Run tests
+        let tester = new Tester();
+        let failed = tester.whichTestFails(quote);
+        if (failed != null) {
+            console.log("\t\tFailed test: " + failed);
+        }
+        else {
+            console.log("\t\tTests succesful, attempting to upload.");
+        }
 
         // If all tests passed, upload quote to the database
-
-
-
-        console.log(quote);
+        if (failed == null) {
+            // UPLOAD TO THE DATABASE
+            
+        }
     });
 }
 
@@ -36,5 +45,7 @@ files.forEach((filename) => {
     }
     catch (exception) {
         console.error("Couldn't read file: " + filename);
+        // debug
+        console.log(exception);
     }
 });
