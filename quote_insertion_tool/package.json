@@ -11,5 +11,8 @@
   },
   "author": "inowen",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "mongodb": "^4.3.1"
+  }
 }
