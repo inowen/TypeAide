@@ -16,7 +16,7 @@ function process_file(filename) {
 
     // Process each quote in the file individually
     json_array.forEach((quote) => {
-        console.log("\tQuote: " + quote.substring(0,50) + "..."); 
+        console.log("\tQuote: " + quote.substring(0,50) + (quote.length>50 ? "..." : "")); 
 
         // Run tests
         let tester = new Tester();
