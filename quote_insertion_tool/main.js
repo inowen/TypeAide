@@ -22,10 +22,10 @@ function process_file(filename) {
         let tester = new Tester();
         let failed = tester.whichTestFails(quote);
         if (failed != null) {
-            console.log("\tFailed test: " + failed);
+            console.log("\t \\_Failed test: " + failed);
         }
         else {
-            console.log("\tPasses all tests.");
+            console.log("\t \\_Passes all tests.");
             let hash = crypto.createHash('md5').update(quote).digest('hex');
             res_quotes.push({text:quote, length:(quote.length), _id:hash});
         }
