@@ -5,7 +5,7 @@ var MongoClient = mongodb.MongoClient;
 
 // Add responses to requests 
 app.get('/api/v1/randomquote', function(req, res) {
-    let url = "mongodb://localhost:27017/";
+    let url = "mongodb://mongodb:27017/";
     MongoClient.connect(url, async function(err, db) {
         if (err) throw err;
         let dbo = db.db("typinglite");
