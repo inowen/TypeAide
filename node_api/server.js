@@ -12,10 +12,8 @@ app.get('/api/v1/randomquote', function(req, res) {
 
         let num_quotes = await dbo.collection("quotes").countDocuments();
         let rnd = Math.floor(Math.random() * num_quotes);
-        console.log("Count: " + num_quotes + ", rnd: " + rnd);
         dbo.collection("quotes").find().limit(1).skip(rnd).toArray((err, result) => {
             if (err) throw err;
-            console.log(result);
             res.end(result[0].text);
             db.close();
         });
