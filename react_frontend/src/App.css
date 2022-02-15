@@ -4,6 +4,9 @@
     right: 0px;
     width: 100%;
     text-align: center;
+    height: 5vh;
+    font-weight: bold;
+    color: gray;
 }
 
 .typingarea {
