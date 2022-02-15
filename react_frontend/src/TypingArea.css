@@ -8,4 +8,5 @@
     top: 20vh;
     transform: (0px, -50%);
     background-color: green;
+    min-height: 16em;
 }
