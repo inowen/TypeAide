@@ -1,13 +1,15 @@
+import { isAbsolute } from 'path/posix';
 import React from 'react';
 
-class TextWindow extends React.Component {
-    constructor(props: any) {
-        super(props);
-    }
+const twdStyle = {
+    border: "2px solid black",
+    backgroundColor: "lightgray"
+};
 
-    render() {
-        return <div className="TextWindow"/>
-    }
+function TextWindow() {
+    return <div style={twdStyle} className="textwindow">
+        A text window.
+    </div>
 }
 
 export default TextWindow;
