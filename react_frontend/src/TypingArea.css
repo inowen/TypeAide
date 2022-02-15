@@ -1,0 +1,11 @@
+.vcenterflex {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50vh;
+    width: 100%;
+    position: absolute;
+    top: 20vh;
+    transform: (0px, -50%);
+    background-color: green;
+}

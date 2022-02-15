@@ -8,6 +8,7 @@ import TypingArea from './TypingArea';
 function App() {
   return <div className="App">
     <NavigationBar/>
+    <TypingArea/>
     <Footer/>
   </div>;
 }
