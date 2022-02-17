@@ -14,6 +14,7 @@ app.get('/api/v1/randomquote', function(req, res) {
         let rnd = Math.floor(Math.random() * num_quotes);
         dbo.collection("quotes").find().limit(1).skip(rnd).toArray((err, result) => {
             if (err) throw err;
+            res.setHeader("Access-Control-Allow-Origin", "*"); // Allow requests from all origins (CORS)
             res.end(result[0].text);
             db.close();
         });
