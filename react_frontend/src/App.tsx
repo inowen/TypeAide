@@ -13,12 +13,18 @@ function App() {
       <button className="testButton" onClick={() => {
         // Spin up the docker environment for this
         const myAsyncFunc = async () => {
-          let url = "/api/v1/randomquote";
-          let response = await fetch(url);
-          console.log(response);
+          const url = "http://localhost:8080/api/v1/randomquote";
+          // AJAX request
+          let httpReq = new XMLHttpRequest();
+          httpReq.addEventListener("load", (argument) => {
+            const responseText = httpReq.responseText;
+            console.log(responseText);
+          });
+          httpReq.open("GET", url);
+          httpReq.send();
         }
         myAsyncFunc();
-      }}>Testing fetch</button>
+      }}>Testing ajax</button>
     </div>
     <Footer/>
   </div>;
