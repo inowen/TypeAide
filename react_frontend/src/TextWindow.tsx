@@ -6,9 +6,13 @@ const twdStyle = {
     backgroundColor: "lightgray"
 };
 
-function TextWindow() {
+function TextWindow(props: any) {
     return <div style={twdStyle} className="textwindow">
         A text window.
+        The quote: <br/> <br/>
+        <span>{props.left}</span>
+        <span>{props.error}</span>
+        <span>{props.right}</span>
     </div>
 }
 
