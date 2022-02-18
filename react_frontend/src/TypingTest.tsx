@@ -45,7 +45,7 @@ function TypingTest() {
             let tNow = new Date().getTime() / 1000;
             seconds = tNow - stateObj.timeStarted;
         }
-        cpm = stateObj.simpleKeysPressed / seconds;
+        cpm = (stateObj.simpleKeysPressed / seconds) * 60;
         wpm = cpm/5;
         accPercentage = (stateObj.numMistakenKeys / stateObj.simpleKeysPressed) * 100;
     }
