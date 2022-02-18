@@ -33,7 +33,7 @@ function TypingTest() {
     }, []);
 
     // Stats
-    let seconds = -1;
+    let seconds = 0;
     let wpm = 0;
     let cpm = 0;
     let accPercentage = 100;
@@ -47,7 +47,7 @@ function TypingTest() {
         }
         cpm = (stateObj.simpleKeysPressed / seconds) * 60;
         wpm = cpm/5;
-        accPercentage = (stateObj.numMistakenKeys / stateObj.simpleKeysPressed) * 100;
+        accPercentage = (1 - stateObj.numMistakenKeys/stateObj.simpleKeysPressed) * 100;
     }
     
     return (
