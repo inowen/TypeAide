@@ -13,7 +13,7 @@
     height: 25em;
 }
 
-.typingtest:focus {
+.typingtest:focus .textwindow {
     border: 2px solid gold;
 }
 
