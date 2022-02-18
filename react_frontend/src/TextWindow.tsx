@@ -6,13 +6,22 @@ const twdStyle = {
     backgroundColor: "lightgray"
 };
 
+/**
+ * 
+ * @param props: Object containing fields: left, error, right. 
+ */
 function TextWindow(props: any) {
+    let leftSide = props.left;
+    let error = props.error;
+    let rightSide = props.right;
+
+    // Text on the right shouldn't move because of mistakes
+    rightSide = rightSide.substring(error.length, rightSide.length);
+
     return <div style={twdStyle} className="textwindow">
-        A text window.
-        The quote: <br/> <br/>
-        <span>{props.left}</span>
-        <span>{props.error}</span>
-        <span>{props.right}</span>
+        <span className="quoteLeft">{leftSide}</span>
+        <span className="quoteError">{error}</span>
+        <span className="quoteRight">{rightSide}</span>
     </div>
 }
 
