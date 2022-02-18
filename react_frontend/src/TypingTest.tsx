@@ -9,7 +9,7 @@ function TypingTest() {
         typed: "", incorrect: "", rest: "", 
         simpleKeysPressed: 0, numMistakenKeys: 0,
         quoteStarted: false, quoteFinished: false,
-        timeStarted: null
+        timeStarted: -1, timeEnded: -1
     });
 
     // Auto-focus the typing test to catch keypresses
@@ -39,6 +39,24 @@ function TypingTest() {
 
     }, []);
 
+    // Stats
+    let seconds = -1;
+    let wpm = 0;
+    let cpm = 0;
+    let accPercentage = 100;
+    if (stateObj.quoteStarted) {
+        if (stateObj.quoteFinished) {
+            seconds = stateObj.timeEnded - stateObj.timeStarted;
+        }
+        else {
+            let tNow = new Date().getTime() / 1000;
+            seconds = tNow - stateObj.timeStarted;
+        }
+        cpm = stateObj.simpleKeysPressed / seconds;
+        wpm = cpm/5;
+        accPercentage = (stateObj.numMistakenKeys / stateObj.simpleKeysPressed) * 100;
+    }
+    
     return (
         <div className="typingtest" 
             ref={thisRef} 
@@ -49,7 +67,9 @@ function TypingTest() {
 
         }>
             <div className="vcenterflex">
+                <span>Here Request customization</span>
                 <TextWindow left={stateObj.typed} error={stateObj.incorrect} right={stateObj.rest}/>
+                <p>Wpm:{wpm}, Cpm:{cpm}, Accuracy:{accPercentage}%, Timer: {seconds} sec.</p>
             </div>
         </div>
     );
@@ -60,6 +80,19 @@ function TypingTest() {
  */
 function keyEventHandler(key: string, stateObj: object) {
     console.log("You pressed: " + key);
+
+    // If escape key, next quote and return 
+
+    // If the quote has ended, return immediately 
+
+    // If the key is delete... 
+    //... if ctrlKey, else
+    // (don't delete if there's nothing to delete)
+
+    // for normal keys: 
+    // - move character from one array to the other.
+    // - if left.empty() finish quote and record end time
+    // - totalKeys++, if wrong then wrongKeys++
 }
 
 export default TypingTest;
