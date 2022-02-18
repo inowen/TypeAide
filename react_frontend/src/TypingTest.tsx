@@ -3,6 +3,8 @@ import { useRef, useEffect, useState } from 'react';
 import TextWindow from './TextWindow';
 import './TypingTest.css';
 
+const backendURL: string = "http://localhost:8080/api/v1/randomquote";
+
 function TypingTest() {
     const thisRef = useRef<HTMLDivElement>(null);
     let [stateObj, setStateObj] = useState({
@@ -21,22 +23,13 @@ function TypingTest() {
 
     // On mount: download the first quote and initialize state
     useEffect(() => {
-        /*
-        REMOVE THIS COMMENT AS SOON AS ITS CONTENT IS IMPLEMENTED
-        Set typed, AND NOTHING MORE. When the user starts typing, the timer starts and the quote starts.
-
-        Initial values for WPM and stuff? Nothing?
-        If quote not started, display that instead of numbers? Or wpm = 0? ... Accuracy = 100% by default.
-        */
-        const url :string = "http://localhost:8080/api/v1/randomquote";
         const req = new XMLHttpRequest();
         req.addEventListener("load", () => {
             const responseText = req.responseText;
-            setStateObj((prev)=>({...stateObj, typed: responseText, incorrect:"", rest:""}));
+            setStateObj((prev)=>({...stateObj, typed: "", incorrect:"", rest:responseText}));
         });
-        req.open("GET", url);
+        req.open("GET", backendURL);
         req.send();
-
     }, []);
 
     // Stats
@@ -62,9 +55,8 @@ function TypingTest() {
             ref={thisRef} 
             tabIndex={1} 
             onKeyDown={ (event)=>{
-                keyEventHandler(event.key, stateObj);
+                keyEventHandler(event, stateObj, setStateObj);
             }
-
         }>
             <div className="vcenterflex">
                 <span>Here Request customization</span>
@@ -78,18 +70,160 @@ function TypingTest() {
 /**
  * Key press event handler
  */
-function keyEventHandler(key: string, stateObj: object) {
-    console.log("You pressed: " + key);
+function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
+    const key = event.key;
+
+    // Ctrl key on its own doesn't mean anything
+    if (key == 'Control') {
+        return;
+    }
 
     // If escape key, next quote and return 
+    if (key == 'Escape') {
+        const req = new XMLHttpRequest();
+        req.addEventListener("load", () => {
+            const responseText = req.responseText;
+            setStateObj((prev: object) => ({
+                ...prev,
+                quoteStarted: false,
+                quoteFinished: false,
+                timeStarted: -1,
+                timeEnded: -1,
+                typed: "",
+                incorrect: "",
+                rest: responseText
+            }));
+        });
+        req.open("GET", backendURL);
+        req.send();
+        return;
+    }
+
+    console.log("I am making it past escape");
 
     // If the quote has ended, return immediately 
+    if (stateObj.quoteFinished) {
+        return;
+    }
 
-    // If the key is delete... 
-    //... if ctrlKey, else
-    // (don't delete if there's nothing to delete)
+    console.log("I am making it past quoteFinished");
 
-    // for normal keys: 
+    /**
+     * Deletes one character in the quote.
+     * Typed, error, and left are passed in as references. They will be edited,
+     *  later setStateObj must be used.
+     * Returns the deleted character, or empty string if there's nothing to delete.
+     */
+    const deleteOne = (passByReference: any) => {
+        if (passByReference.error.length > 0) {
+            console.log("Debug: Deleting one from error"); // I think it somehow gets in infinite loop, and deleteOne doesn't delete here!
+            const ret = passByReference.error[passByReference.error.length-1];
+            passByReference.error = passByReference.error.substring(0, passByReference.error.length-1);
+            return ret;
+        }
+        else if (passByReference.typed.length > 0) {
+            let ret = passByReference.typed[passByReference.typed.length-1];
+            passByReference.typed = passByReference.typed.substring(0, passByReference.typed.length-1);
+            passByReference.left = ret.concat(passByReference.left);
+            return ret;
+        }
+        else {
+            return '';
+        }
+    }
+
+    if (key == 'Backspace') {
+        let passByReference = {
+            typed: stateObj.typed,
+            error: stateObj.incorrect,
+            left : stateObj.rest
+        }
+        console.log("Before deleting: typed=" + passByReference.typed + ", error=" + passByReference.error + ", left=" + passByReference.left);
+
+        if (event.ctrlKey) {
+            // Whitespaces
+            let deleted = ' ';
+            while(deleted == ' ') {
+                deleted = deleteOne(passByReference);
+            }
+            // Delete a word
+            while(deleted!='' && deleted!=' ') {
+                deleted = deleteOne(passByReference);
+            }
+        }
+        else {
+            deleteOne(passByReference);
+        }
+
+        console.log("Before deleting: typed=" + passByReference.typed + ", error=" + passByReference.error + ", left=" + passByReference.left);
+
+
+        // Update state
+        setStateObj((prev: any) => ({
+            ...prev,
+            typed: passByReference.typed,
+            incorrect: passByReference.error,
+            rest: passByReference.left
+        }))
+        return;
+    }
+
+
+    console.log("I am making it to normal keys");
+
+    // Handle normal key presses
+    let typed:string = stateObj.typed;
+    let incorrect:string = stateObj.incorrect;
+    let left:string = stateObj.rest;
+    let simpleKeysPressed = stateObj.simpleKeysPressed;
+    let numMistakenKeys = stateObj.numMistakenKeys;
+    let quoteFinished = false;
+    let timeStarted = stateObj.timeStarted;
+    let timeEnded = stateObj.timeEnded;
+
+
+    if (key.length == 1) {
+        if (incorrect.length > 0) {
+            incorrect = incorrect.concat(key);
+            simpleKeysPressed++;
+            numMistakenKeys++;
+        }
+        else {
+            // Compare with key left to type, if they match then shift & unshift. Otherwise, set error.
+            if (key == left.charAt(0)) {
+                typed = typed.concat(left[0]);
+                left = left.substring(1, left.length);
+                simpleKeysPressed++;
+            }
+            else {
+                incorrect = key;
+                simpleKeysPressed++;
+                numMistakenKeys++;
+            }
+        }
+
+        // Set state
+        if (left.length == 0) {
+            quoteFinished = true;
+            timeEnded = new Date().getTime() / 1000;
+        }
+        if (stateObj.quoteStarted == false) {
+            timeStarted = new Date().getTime() / 1000;
+        }
+
+        setStateObj((prev: any)=>({
+            ...prev,
+            typed: typed,
+            incorrect: incorrect,
+            rest: left,
+            quoteStarted: true,
+            simpleKeysPressed: simpleKeysPressed,
+            numMistakenKeys: numMistakenKeys,
+            quoteFinished: quoteFinished,
+            timeStarted: timeStarted,
+            timeEnded: timeEnded
+        }));
+    }
     // - move character from one array to the other.
     // - if left.empty() finish quote and record end time
     // - totalKeys++, if wrong then wrongKeys++
