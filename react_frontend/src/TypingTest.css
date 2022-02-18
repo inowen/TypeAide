@@ -24,3 +24,18 @@
     border: 2px solid black;
     background-color: lightgray;
 }
+
+.quoteLeft {
+    background-color: lightgreen;
+    white-space: pre-wrap;
+}
+
+.quoteError {
+    background-color: red;
+    white-space: pre-wrap;
+}
+
+.quoteRight {
+    white-space: pre-wrap;
+    
+}
