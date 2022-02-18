@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
-import TypingArea from './TypingArea';
+import TypingTest from './TypingTest';
 
 
 function App() {
   return <div className="App">
     <NavigationBar/>
-    <TypingArea/>
+    <TypingTest/>
     <Footer/>
   </div>;
 }

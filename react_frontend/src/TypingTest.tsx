@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRef, useEffect, useState } from 'react';
 import TextWindow from './TextWindow';
-import './TypingArea.css';
+import './TypingTest.css';
 
-function TypingArea() {
+function TypingTest() {
     const thisRef = useRef<HTMLDivElement>(null);
     let [stateObj, setStateObj] = useState({
         typed: "", incorrect: "", rest: "", 
@@ -12,7 +12,7 @@ function TypingArea() {
         timeStarted: null
     });
 
-    // Auto-focus the typing area to catch keypresses
+    // Auto-focus the typing test to catch keypresses
     useEffect(() => {
         if (thisRef.current != null) {
             thisRef.current.focus();
@@ -22,6 +22,7 @@ function TypingArea() {
     // On mount: download the first quote and initialize state
     useEffect(() => {
         /*
+        REMOVE THIS COMMENT AS SOON AS ITS CONTENT IS IMPLEMENTED
         Set typed, AND NOTHING MORE. When the user starts typing, the timer starts and the quote starts.
 
         Initial values for WPM and stuff? Nothing?
@@ -39,7 +40,7 @@ function TypingArea() {
     }, []);
 
     return (
-        <div className="typingarea" 
+        <div className="typingtest" 
             ref={thisRef} 
             tabIndex={1} 
             onKeyDown={ (event)=>{
@@ -61,4 +62,4 @@ function keyEventHandler(key: string, stateObj: object) {
     console.log("You pressed: " + key);
 }
 
-export default TypingArea;
+export default TypingTest;
