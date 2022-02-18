@@ -99,14 +99,11 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
         return;
     }
 
-    console.log("I am making it past escape");
-
     // If the quote has ended, return immediately 
     if (stateObj.quoteFinished) {
         return;
     }
 
-    console.log("I am making it past quoteFinished");
 
     /**
      * Deletes one character in the quote.
@@ -116,7 +113,6 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
      */
     const deleteOne = (passByReference: any) => {
         if (passByReference.error.length > 0) {
-            console.log("Debug: Deleting one from error"); // I think it somehow gets in infinite loop, and deleteOne doesn't delete here!
             const ret = passByReference.error[passByReference.error.length-1];
             passByReference.error = passByReference.error.substring(0, passByReference.error.length-1);
             return ret;
@@ -138,7 +134,6 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
             error: stateObj.incorrect,
             left : stateObj.rest
         }
-        console.log("Before deleting: typed=" + passByReference.typed + ", error=" + passByReference.error + ", left=" + passByReference.left);
 
         if (event.ctrlKey) {
             // Whitespaces
@@ -155,9 +150,6 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
             deleteOne(passByReference);
         }
 
-        console.log("Before deleting: typed=" + passByReference.typed + ", error=" + passByReference.error + ", left=" + passByReference.left);
-
-
         // Update state
         setStateObj((prev: any) => ({
             ...prev,
@@ -168,8 +160,6 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
         return;
     }
 
-
-    console.log("I am making it to normal keys");
 
     // Handle normal key presses
     let typed:string = stateObj.typed;
@@ -224,9 +214,6 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
             timeEnded: timeEnded
         }));
     }
-    // - move character from one array to the other.
-    // - if left.empty() finish quote and record end time
-    // - totalKeys++, if wrong then wrongKeys++
 }
 
 export default TypingTest;
