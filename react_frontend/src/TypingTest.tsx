@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRef, useEffect, useState } from 'react';
+import StatsDisplay from './StatsDisplay';
 import TextWindow from './TextWindow';
 import './TypingTest.css';
 
@@ -49,7 +50,14 @@ function TypingTest() {
         wpm = cpm/5;
         accPercentage = (1 - stateObj.numMistakenKeys/stateObj.simpleKeysPressed) * 100;
     }
-    
+    let status = "Quote not started";
+    if (stateObj.quoteStarted) {
+        status = "Quote started";
+        if (stateObj.quoteFinished) {
+            status = "Quote finished";
+        }
+    }
+
     return (
         <div className="typingtest" 
             ref={thisRef} 
@@ -61,7 +69,7 @@ function TypingTest() {
             <div className="vcenterflex">
                 <span>Here Request customization</span>
                 <TextWindow left={stateObj.typed} error={stateObj.incorrect} right={stateObj.rest}/>
-                <p>Wpm:{wpm}, Cpm:{cpm}, Accuracy:{accPercentage}%, Timer: {seconds} sec.</p>
+                <StatsDisplay wpm={wpm} cpm={cpm} accuracy={accPercentage+"%"} timer={seconds+" sec"} status={status}/>
             </div>
         </div>
     );
