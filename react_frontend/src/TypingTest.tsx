@@ -69,7 +69,7 @@ function TypingTest() {
             <div className="vcenterflex">
                 <span>Here Request customization</span>
                 <TextWindow left={stateObj.typed} error={stateObj.incorrect} right={stateObj.rest}/>
-                <StatsDisplay wpm={wpm} cpm={cpm} accuracy={accPercentage+"%"} timer={seconds+" sec"} status={status}/>
+                <StatsDisplay wpm={wpm} cpm={cpm} accuracyPercentage={accPercentage} numSeconds={seconds} status={status}/>
             </div>
         </div>
     );

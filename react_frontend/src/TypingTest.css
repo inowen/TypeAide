@@ -26,6 +26,11 @@
     background-color: #282c34;
 }
 
+.statsdisplay {
+    font-weight: bold;
+    color: white;
+}
+
 .quoteLeft {
     background-color: lightgreen;
     white-space: pre-wrap;
