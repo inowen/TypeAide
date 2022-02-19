@@ -67,7 +67,7 @@ function TypingTest() {
             }
         }>
             <div className="vcenterflex">
-                <span>Here Request customization</span>
+                <div style={{color:"darkblue"}}>Placeholder<br/>(quote category form)</div>
                 <TextWindow left={stateObj.typed} error={stateObj.incorrect} right={stateObj.rest}/>
                 <StatsDisplay wpm={wpm} cpm={cpm} accuracyPercentage={accPercentage} numSeconds={seconds} status={status}/>
             </div>
@@ -136,7 +136,21 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
         else {
             return '';
         }
-    }
+    };
+
+    /**
+     * Takes object with typed,left,error fields.
+     * Returns the next character that would be deleted (as a string), or empty string.
+     */
+    const peekOne = (passByRef: any) => {
+        if (passByRef.error.length > 0) {
+            return passByRef.error[passByRef.error.length - 1];
+        }
+        else if (passByRef.typed.length > 0) {
+            return passByRef.typed[passByRef.typed.length - 1];
+        }
+        return '';
+    };
 
     if (key == 'Backspace') {
         let passByReference = {
@@ -147,13 +161,12 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
 
         if (event.ctrlKey) {
             // Whitespaces
-            let deleted = ' ';
-            while(deleted == ' ') {
-                deleted = deleteOne(passByReference);
+            while(peekOne(passByReference) == ' ') {
+                deleteOne(passByReference);
             }
             // Delete a word
-            while(deleted!='' && deleted!=' ') {
-                deleted = deleteOne(passByReference);
+            while(peekOne(passByReference)!='' && peekOne(passByReference)!=' ') {
+                deleteOne(passByReference);
             }
         }
         else {
