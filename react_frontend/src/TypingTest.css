@@ -23,8 +23,7 @@
     padding: 1em;
     border: 2px solid black;
     background-color: #282c34;
-    font-size: 1.3em;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.4em;
 }
 
 .statsdisplay {
@@ -34,12 +33,12 @@
 }
 
 .quoteLeft {
-    background-color: lightgreen;
+    background-color: #050;
     white-space: pre-wrap;
 }
 
 .quoteError {
-    background-color: red;
+    background-color: #f70;
     white-space: pre-wrap;
 }
 
