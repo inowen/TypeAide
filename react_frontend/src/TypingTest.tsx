@@ -99,7 +99,9 @@ function keyEventHandler(event: any, stateObj: any, setStateObj: any) {
                 timeEnded: -1,
                 typed: "",
                 incorrect: "",
-                rest: responseText
+                rest: responseText,
+                simpleKeysPressed: 0,
+                numMistakenKeys: 0
             }));
         });
         req.open("GET", backendURL);
