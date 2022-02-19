@@ -11,7 +11,6 @@
     min-height: 16em;
     height: 25em;
     color: white;
-    font-weight: bold;
 }
 
 .typingtest:focus .textwindow {
@@ -24,11 +23,14 @@
     padding: 1em;
     border: 2px solid black;
     background-color: #282c34;
+    font-size: 1.3em;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .statsdisplay {
     font-weight: bold;
     color: white;
+    width: 18em;
 }
 
 .quoteLeft {
