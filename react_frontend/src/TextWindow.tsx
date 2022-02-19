@@ -11,6 +11,7 @@ function TextWindow(props: any) {
     let rightSide = props.right;
 
     // Text on the right shouldn't move because of mistakes
+    error = rightSide.substring(0, error.length);
     rightSide = rightSide.substring(error.length, rightSide.length);
 
     return <div className="textwindow">
