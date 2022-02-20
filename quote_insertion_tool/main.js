@@ -41,7 +41,7 @@ async function write_to_db(quote_objects) {
     let url = "mongodb://localhost:27017/";
     let MongoClient = mongodb.MongoClient;
     let connection = await MongoClient.connect(url);
-    let db = connection.db("typingaide");
+    let db = connection.db("typeaide");
     let insert_counter = 0;
 
     for (let i_quote=0; i_quote<quote_objects.length; ++i_quote) {
