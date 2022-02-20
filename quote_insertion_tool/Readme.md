@@ -1,6 +1,7 @@
 # Quote Insertion Tool
 
 Command line tool. 
+> node main.js [list of files]
 
 ## Input
 A JSON file with a list of quotes.
