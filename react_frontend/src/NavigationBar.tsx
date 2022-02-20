@@ -7,12 +7,12 @@ function NavigationBar() {
       <img src={logo} style={{height:"40px", width:"100px"}}/>
     </NavbarBrand>
     <Nav style={{marginLeft:"50px"}}>
-      <NavLink href="#" style={{fontWeight:"bold"}}>Typing </NavLink>
-      <NavLink href="#" style={{marginLeft:"20px", fontWeight:"bold"}}>About</NavLink>
+      <NavLink className="navbarbutton" href="#" style={{fontWeight:"bold"}}>Typing </NavLink>
+      <NavLink className="navbarbutton" href="#" style={{marginLeft:"20px", fontWeight:"bold"}}>About</NavLink>
     </Nav>
     <div style={{position:"absolute", right:"1%"}}>
     <Nav>
-      <NavLink style={{fontWeight:"bold"}} href="#">Login</NavLink>
+      <NavLink className="navbarbutton" style={{fontWeight:"bold"}} href="#">Login</NavLink>
     </Nav>
     </div>
   </Navbar>

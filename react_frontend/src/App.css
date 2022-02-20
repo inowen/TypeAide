@@ -1,3 +1,8 @@
 .typingarea {
     color: white;
 }
+
+.navbarbutton:hover {
+    border: 2px solid lightskyblue;
+    border-radius: 0.5em;
+}
