@@ -13,7 +13,7 @@ done
 echo "Connected!"
 
 # If the db is empty, initialize it
-if [[ $(echo $output | grep '"name" : "typingaide"') == "" ]]; then
+if [[ $(echo $output | grep '"name" : "typeaide"') == "" ]]; then
     echo "The db is empty, checking for default content folder";
     # Check if there is something in the default folder, otherwise exit
     if [[ $(ls /app/default_content | wc -l) == "0" ]]; then
@@ -24,5 +24,5 @@ if [[ $(echo $output | grep '"name" : "typingaide"') == "" ]]; then
     echo "Using mongorestore on default content folder."
     mongorestore --host mongodb /app/default_content
 else 
-    echo "Typingaide database already present, not initializing."
+    echo "Typeaide database already present, not initializing."
 fi;
