@@ -1,10 +1,10 @@
 import  { Button, Nav, Navbar, NavbarBrand, NavLink } from 'react-bootstrap';
-import logo from "./resources/logo_typinglite.png";
+import logo from "./resources/logo_typeaide.png";
 
 function NavigationBar() {
-  return <Navbar variant="dark" bg="dark">
+  return <Navbar variant="dark" bg="dark" style={{padding:"4px"}}>
     <NavbarBrand style={{marginLeft:"1%"}}>
-      <img src={logo} style={{height:"50px", width:"150px"}}/>
+      <img src={logo} style={{height:"40px", width:"100px"}}/>
     </NavbarBrand>
     <Nav style={{marginLeft:"50px"}}>
       <NavLink href="#" style={{fontWeight:"bold"}}>Typing </NavLink>
