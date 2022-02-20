@@ -8,7 +8,7 @@ app.get('/api/v1/randomquote', function(req, res) {
     let url = "mongodb://mongodb:27017/";
     MongoClient.connect(url, async function(err, db) {
         if (err) throw err;
-        let dbo = db.db("typinglite");
+        let dbo = db.db("typingaide");
 
         let num_quotes = await dbo.collection("quotes").countDocuments();
         let rnd = Math.floor(Math.random() * num_quotes);
