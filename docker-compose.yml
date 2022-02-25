@@ -27,3 +27,11 @@ services:
       - mongodb
     command:
       - /app/server.js
+
+  # Frontend
+  frontend:
+    build: ./react_frontend
+    ports:
+      - "3000:3000"
+    links: 
+      - nodeapi
