@@ -4,7 +4,7 @@ import StatsDisplay from './StatsDisplay';
 import TextWindow from './TextWindow';
 import './TypingTest.css';
 
-const backendURL: string = "http://localhost:8080/api/v1/randomquote";
+const backendURL: string = "http://212.115.110.9:8080/api/v1/randomquote";
 
 function TypingTest() {
     const thisRef = useRef<HTMLDivElement>(null);
