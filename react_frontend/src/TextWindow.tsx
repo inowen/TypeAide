@@ -1,4 +1,3 @@
-import { isAbsolute } from 'path/posix';
 import React from 'react';
 
 /**

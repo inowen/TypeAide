@@ -1,4 +1,4 @@
-import  { Button, Nav, Navbar, NavbarBrand, NavLink } from 'react-bootstrap';
+import  { Nav, Navbar, NavbarBrand, NavLink } from 'react-bootstrap';
 import logo from "./resources/logo_typeaide.png";
 
 function NavigationBar() {
