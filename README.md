@@ -1,10 +1,14 @@
 # TypeAi.de
-Site to practise typing skills. Currently in development, once the first working version is finished I'll add a link here.
+Site to practise typing skills.
 
+www.typeai.de
+(the site doesn't work yet: the backend uses http, but browsers will block requests unless they are via HTTPS with a certificate from a trusted authority. I'm fixing that though).
 
-With this project I'm aiming to make a minimalist site with quality texts, a simple UI, and a straightforward text window. The quotes will go through a strict spell checker, as well as tests to make sure that there aren't any extra spaces, a grammar checker, etc. Anything that could help ensure quality. The timer should start exactly when a user starts typing (instead of the countdowns from other sites). Creating an account will be optional, if a user logs in then their progress will be tracked, but there won't be any prompts to log in.
+![](readme_resources/typeai.de.png)
 
+Minimalist typing site with a simple UI.
 
+<hr/>
 ## Running it:
 Haven't finished completely automating everything yet. But for now it works like this:
 
